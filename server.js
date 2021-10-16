@@ -110,7 +110,7 @@ bot.launch()
 
                
                       
-const Port = process.env.Port;
+const Port = process.env.Port || 5000;
 
 // Middleware
 app.use(express.json());
