@@ -100,6 +100,12 @@ bot.action('cough', ctx => {
     ctx.reply(response)
 })
 
+bot.action('no', ctx => {
+    let response = `Congrats you are safe`;
+    ctx.deleteMessage();
+    ctx.reply(response)
+})
+
 bot.action('two', ctx => {
     let response = `Congrats you are full vaccinated! but fight is not over yet `;
     ctx.deleteMessage();
@@ -128,6 +134,9 @@ app.get("/", (req, res) => {
     res.send("Hello From Teligram Boot API Server");
 });
 
+app.get('/', (req, res) =>{
+    res.status(200).send('welcome to telegram bot')
+})
 
 //Port for listening
 app.listen(Port, () => {
