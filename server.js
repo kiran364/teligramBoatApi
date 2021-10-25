@@ -18,7 +18,7 @@ const {Telegraf} = require('telegraf')
 const bot = new Telegraf(process.env.botId)
 
 
-bot.help((ctx) => {
+bot.help((ctx)  => {
     ctx.reply("This Bot Perform Following Commands\n - /start\n - /help");
 })
 
@@ -29,11 +29,13 @@ bot.start((ctx) => {
 
 bot.command('restart', (ctx) => {
     let name = ctx.from.first_name
-    ctx.reply(`Hi, ${name} Where are you from?`)}
-)
+    ctx.reply(`Hi, ${name} Where are you from?`)
+
+})
 
 
 bot.on('text', (ctx) => {
+    console.log(ctx.message)
     ctx.reply(`How many vaccines are taken?`,{
         reply_markup: {
             inline_keyboard: [
@@ -51,9 +53,10 @@ bot.on('text', (ctx) => {
 // 
 
 
+
 bot.action('one', ctx => {
-    console.log(ctx.from)
-    let response = `Do you have any symptons?`;
+    console.log(ctx.match.input)
+    let response = `Do you have any symptoms?`;
     ctx.deleteMessage();
     ctx.reply(response, {
         reply_markup: {
@@ -71,8 +74,8 @@ bot.action('one', ctx => {
 
 
 bot.action('yes', ctx => {
-    console.log(ctx.from)
-    let response = `Do you have any symptons?`;
+    console.log(ctx.match.input)
+    let response = `Can I know which symptoms?`;
     ctx.deleteMessage();
     ctx.reply(response, {
         reply_markup: {
@@ -89,33 +92,35 @@ bot.action('yes', ctx => {
 })
 
 bot.action('fever', ctx => {
-    let response = `Take a cosfils if cough increases contact to doctor`;
+    console.log(ctx.match.input)
+    let response = `Take a calpol if fever increases contact to doctor`;
     ctx.deleteMessage();
     ctx.reply(response)
 })
 
 bot.action('cough', ctx => {
-    let response = `Take a cosfils if cough increases contact to doctor`;
+    console.log(ctx.match.input)
+    let response = `Take a cofsils if cough increases contact to doctor`;
     ctx.deleteMessage();
     ctx.reply(response)
 })
 
 bot.action('no', ctx => {
+    console.log(ctx.match.input)
     let response = `Congrats you are safe`;
     ctx.deleteMessage();
     ctx.reply(response)
 })
 
 bot.action('two', ctx => {
+    console.log(ctx.match.input)
     let response = `Congrats you are full vaccinated! but fight is not over yet `;
     ctx.deleteMessage();
     ctx.reply(response)
 })
 
 bot.launch()
-
-               
-                      
+                 
 const Port = process.env.Port || 5000;
 
 // Middleware
@@ -134,9 +139,6 @@ app.get("/", (req, res) => {
     res.send("Hello From Teligram Boot API Server");
 });
 
-app.get('/', (req, res) =>{
-    res.status(200).send('welcome to telegram bot')
-})
 
 //Port for listening
 app.listen(Port, () => {
