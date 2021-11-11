@@ -40,10 +40,10 @@ bot.on('text', (ctx) => {
         reply_markup: {
             inline_keyboard: [
                 [
-                    { text: 'one', callback_data: 'one' },
+                    { text: 'One', callback_data: 'one' },
                 ],
                 [
-                    { text: 'two', callback_data: 'two' },
+                    { text: 'Two', callback_data: 'two' },
                 ]
             ]
         }
@@ -81,10 +81,10 @@ bot.action('yes', ctx => {
         reply_markup: {
             inline_keyboard: [
                 [
-                    { text: "cough", callback_data: 'cough' },
+                    { text: "Cough", callback_data: 'cough' },
                 ],
                 [
-                    { text: "fever", callback_data: 'fever' },
+                    { text: "Fever", callback_data: 'fever' },
                 ],
             ]
         }
